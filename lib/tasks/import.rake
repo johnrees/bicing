@@ -29,11 +29,20 @@ namespace :import do
       end
 
       begin
+
+        slots = node.locate('slots').first.text.to_i
+        bikes = node.locate('bikes').first.text.to_i
+
+        if r = s.latest_reading
+          return if r.slots != slots || r.bikes != bikes
+        end
+
         s.readings.create({
           recorded_at: xml.bicing_stations.locate("updatetime").first.nodes.first.value,
-          slots: node.locate('slots').first.text,
-          bikes: node.locate('bikes').first.text
+          slots: slots,
+          bikes: bikes
         })
+
       rescue
       end
 

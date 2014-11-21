@@ -9,8 +9,8 @@ class CreateStations < ActiveRecord::Migration
       t.integer :height
       t.string :status
       t.string :nearby
-      t.integer :slots
-      t.integer :bikes
+      t.integer :slot_count
+      t.integer :bike_count
 
       t.timestamps null: false
     end

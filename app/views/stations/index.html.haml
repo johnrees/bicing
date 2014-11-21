@@ -1,0 +1,6 @@
+%ul
+  - @stations.each do |station|
+    %li
+      = station
+      = station.bikes
+      #{station.percentage_of_bikes_available}%

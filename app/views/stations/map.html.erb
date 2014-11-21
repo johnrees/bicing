@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+    <script>
+// Adding 500 Data Points
+var map, pointarray, heatmap;
+
+var style = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]}];
+
+
+var empty_stations = [
+  <% Station.full.each do |station| %>
+    <% 1.times do %>
+      new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
+    <% end %>
+  <% end %>
+];
+
+// var full_stations = [
+//   <% @stations.each do |station| %>
+//     <% 1.times do %>
+//       new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
+//     <% end %>
+//   <% end %>
+// ];
+
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(41.39479,2.1487679),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: style
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // var pointArray = new google.maps.MVCArray(empty_stations);
+  // heatmap = new google.maps.visualization.HeatmapLayer({data: pointArray});
+  // heatmap.setMap(map);
+
+
+  <% @stations.full.each do |station| %>
+  var populationOptions = {
+    strokeWeight: 0,
+    fillColor: '<%= station.colour %>',
+    fillOpacity: 0.9,
+    map: map,
+    center: new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
+    radius: <%= station.total_slots * 1.5 %>
+  };
+  new google.maps.Circle(populationOptions)
+<% end %>
+
+}
+
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>

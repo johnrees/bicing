@@ -1,3 +1,4 @@
+ruby '2.1.4'
 source 'https://rubygems.org'
 
 
@@ -5,12 +6,16 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0.beta4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'paper_trail'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.0.beta1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+gem 'haml-rails'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
+gem 'htmlentities'
+gem 'stamp'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -22,6 +27,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'ox'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

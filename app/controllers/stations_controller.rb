@@ -5,7 +5,7 @@ class StationsController < ApplicationController
   end
 
   def map
-    @stations = Station.eager_load(:readings)
+    @stations = Station.eager_load(:readings).order("readings.recorded_at DESC")
   end
 
 end

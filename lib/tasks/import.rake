@@ -37,7 +37,7 @@ namespace :import do
         end
 
         s.readings.create({
-          recorded_at: xml.bicing_stations.locate("updatetime").first.nodes.first.value,
+          recorded_at: Time.at(xml.bicing_stations.locate("updatetime").first.nodes.first.value.to_i),
           slots: slots,
           bikes: bikes
         })

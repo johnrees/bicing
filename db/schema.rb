@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121135725) do
+ActiveRecord::Schema.define(version: 20141121180704) do
 
   create_table "readings", force: true do |t|
     t.integer  "station_id"
     t.integer  "bikes"
     t.integer  "slots"
-    t.integer  "recorded_at"
+    t.datetime "recorded_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

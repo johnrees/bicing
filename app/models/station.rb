@@ -33,13 +33,17 @@ class Station < ActiveRecord::Base
       when 0
         "black"
       when 1..34
-        "#07BADB"
+        # "#07BADB"
+        "rgba(255,255,1,0.3)"
       when 35..37
-        "#78E268"
+        # "#78E268"
+        "rgba(255,255,1,0.5)"
       when 51..99
-        "#FEFF57"
+        # "#FEFF57"
+        "rgba(255,255,1,0.7)"
       else
-        "#FF4A53"
+        # "#FF4A53"
+        "rgba(255,255,1,1)"
       end
   end
 

@@ -16,17 +16,17 @@ class Station < ActiveRecord::Base
     HTMLEntities.new.decode(street)
   end
 
-  # def bikes
-  #   latest_reading.bikes
-  # end
+  def bikes
+    latest_reading.bikes
+  end
 
-  # def slots
-  #   latest_reading.slots
-  # end
+  def slots
+    latest_reading.slots
+  end
 
-  # def latest_reading
-  #   readings.first
-  # end
+  def latest_reading
+    readings.first
+  end
 
   def colour
     case percentage_of_bikes_available
@@ -45,12 +45,6 @@ class Station < ActiveRecord::Base
 
   def total_slots
     bikes + slots
-  end
-
-  def percentage_of_bikes_available
-    if total_slots > 0
-      ((bikes/total_slots.to_f) * 100).ceil
-    end
   end
 
 

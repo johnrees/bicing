@@ -9,6 +9,8 @@ namespace :import do
     xml.bicing_stations.locate("station").each do |node|
 
       id = node.locate('id').first.text
+      slots = node.locate('slots').first.text.to_i
+      bikes = node.locate('bikes').first.text.to_i
 
       s = Station.unscoped.find_or_create_by(id: id) do |station|
         station.street = node.locate('street').first.nodes.first.value
@@ -19,19 +21,16 @@ namespace :import do
         station.street_number = node.locate('streetNumber').first.text
         station.nearby = node.locate('nearbyStationList').first.text
         station.status = node.locate('status').first.text
-        station.slot_count = node.locate('slots').first.text.to_i
-        station.bike_count = node.locate('bikes').first.text.to_i
+        station.slot_count = slots
+        station.bike_count = bikes
 
-        if (station.slot_count + station.bike_count) > 0
-          station.percentage_of_bikes_available = ((station.bike_count.to_i/(station.slot_count + station.bike_count).to_f) * 100).ceil
+        if (slots + bikes) > 0
+          station.percentage_of_bikes_available = ((bikes/(slots + bikes).to_f) * 100).ceil
         end
 
       end
 
       begin
-
-        slots = node.locate('slots').first.text.to_i
-        bikes = node.locate('bikes').first.text.to_i
 
         if r = s.latest_reading
           return if (r.slots == slots && r.bikes == bikes)

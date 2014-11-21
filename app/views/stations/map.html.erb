@@ -29,10 +29,10 @@ var style = [{"featureType":"water","elementType":"geometry","stylers":[{"color"
 
 
 var empty_stations = [
+  <% cache(Reading.unscoped.last) do %>
   <% Station.full.each do |station| %>
-    <% 1.times do %>
       new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-    <% end %>
+  <% end %>
   <% end %>
 ];
 

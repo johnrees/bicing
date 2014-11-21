@@ -34,7 +34,7 @@ namespace :import do
         bikes = node.locate('bikes').first.text.to_i
 
         if r = s.latest_reading
-          return if (r.slots == slots || r.bikes == bikes)
+          return if (r.slots == slots && r.bikes == bikes)
         end
 
         s.readings.create({

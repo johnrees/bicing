@@ -60,7 +60,7 @@ function initialize() {
   // heatmap.setMap(map);
 
 
-  <% @stations.full.each do |station| %>
+  <% @stations.each do |station| %>
   var populationOptions = {
     strokeWeight: 0,
     fillColor: '<%= station.colour %>',

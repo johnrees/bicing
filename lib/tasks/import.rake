@@ -10,7 +10,7 @@ namespace :import do
 
       id = node.locate('id').first.text
 
-      s = Station.find_or_create_by(id: id) do |station|
+      s = Station.unscoped.find_or_create_by(id: id) do |station|
         station.street = node.locate('street').first.nodes.first.value
         station.kind = node.locate('type').first.text
         station.lat = node.locate('lat').first.text

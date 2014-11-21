@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121180704) do
+ActiveRecord::Schema.define(version: 20141121180427) do
 
   create_table "readings", force: true do |t|
     t.integer  "station_id"
     t.integer  "bikes"
     t.integer  "slots"
-    t.datetime "recorded_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "recorded_at"
   end
 
-  add_index "readings", ["recorded_at", "station_id"], name: "index_readings_on_recorded_at_and_station_id", unique: true
+  add_index "readings", ["station_id", "recorded_at"], name: "index_readings_on_station_id_and_recorded_at", unique: true
+  add_index "readings", ["station_id"], name: "index_readings_on_recorded_at_and_station_id", unique: true
 
   create_table "stations", force: true do |t|
     t.string   "kind"

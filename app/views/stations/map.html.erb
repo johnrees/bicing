@@ -29,23 +29,6 @@ var map, pointarray, heatmap;
 
 var style = [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"off"},{"color":"#000000"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]}];
 
-
-var empty_stations = [
-  <%# cache(Reading.unscoped.last) do %>
-  <% Station.full.each do |station| %>
-      new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-  <% end %>
-  <%# end %>
-];
-
-// var full_stations = [
-//   <% @stations.each do |station| %>
-//     <% 1.times do %>
-//       new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-//     <% end %>
-//   <% end %>
-// ];
-
 function initialize() {
   var mapOptions = {
     zoom: 13,
@@ -63,6 +46,7 @@ function initialize() {
 
 
   <% @stations.each do |station| %>
+  // <%= station.id %> <%= station %> - <%= station.latest_reading %> - <%= station.bike_count %>
   var populationOptions = {
     strokeWeight: 0,
     fillColor: '<%= station.colour %>',

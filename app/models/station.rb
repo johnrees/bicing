@@ -1,7 +1,21 @@
 class Station < ActiveRecord::Base
 
-  has_paper_trail ignore: [:slot_count,:bike_count]
+  has_paper_trail ignore: [:slot_count,:bike_count, :percentage_of_bikes_available]
   has_many :readings
+
+  before_save :update_average
+
+  def update_average
+    if total_count > 0
+      self.percentage_of_bikes_available = ((bikes / total_count.to_f) * 100).ceil
+    else
+      self.percentage_of_bikes_available = nil
+    end
+  end
+
+  def total_count
+    bikes + slots
+  end
 
   default_scope -> { where(status: 'OPN') }
 

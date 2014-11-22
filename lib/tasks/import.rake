@@ -25,11 +25,9 @@ namespace :import do
         station.status = node.locate('status').first.text
         station.slot_count = slots
         station.bike_count = bikes
-        puts 'a'
-        if (slots + bikes) > 0
-          station.percentage_of_bikes_available = ((bikes/(slots + bikes).to_f) * 100).ceil
-        end
-
+        # if (slots + bikes) > 0
+        #   station.percentage_of_bikes_available = ((bikes/(slots + bikes).to_f) * 100).ceil
+        # end
       end
 
       begin

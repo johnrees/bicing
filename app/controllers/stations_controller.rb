@@ -7,6 +7,7 @@ class StationsController < ApplicationController
 
   def map
     @stations = Station.eager_load(:readings).order("readings.recorded_at DESC")
+    render :map, layout: false
   end
 
 end

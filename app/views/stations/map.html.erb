@@ -1,5 +1,5 @@
 <%= cache Reading.unscoped.last do %>
-<!-- LAST UPDATED AT: <%= Reading.unscoped.last.created_at.stamp('14:11:33 12 Apr 99') %> -->
+<!-- LAST UPDATED AT: <%= (Reading.unscoped.last.created_at + 1.hour).stamp('14:11:33 12 Apr 99') %> -->
 
 <!DOCTYPE html>
 <html>

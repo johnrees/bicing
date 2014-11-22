@@ -4,6 +4,7 @@ class Station < ActiveRecord::Base
   has_many :readings
 
   before_save :update_average
+  after_touch :update_average
 
   def update_average
     if total_count > 0

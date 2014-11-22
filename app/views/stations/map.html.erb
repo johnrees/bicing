@@ -53,7 +53,8 @@ function initialize() {
     fillOpacity: 1,
     map: map,
     center: new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-    radius: <%= station.bike_count == 0 ? 30 : (station.percentage_of_bikes_available || 0) * 0.9 %>
+    radius: <%= station.bike_count == 0 ? 30 : [200, (station.bike_count || 0) * 4].min %>,
+    zIndex: <%= station.bike_count == 0 ? 9999 : 1 %>
   };
   new google.maps.Circle(populationOptions)
 <% end %>

@@ -44,7 +44,7 @@ class Station < ActiveRecord::Base
   end
 
   def colour
-    case bike_count
+    case bikes
       when 0
         "white"
       else

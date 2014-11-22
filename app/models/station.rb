@@ -44,25 +44,32 @@ class Station < ActiveRecord::Base
   end
 
   def colour
-    case bikes
-      when 0
-        "white"
-      else
-        "red"
-        # "rgba(255,255,1,1)"
-      # when 1..34
-      #   # "#07BADB"
-      #   "rgba(255,255,1,0.3)"
-      # when 35..37
-      #   # "#78E268"
-      #   "rgba(255,255,1,0.5)"
-      # when 51..99
-      #   # "#FEFF57"
-      #   "rgba(255,255,1,0.7)"
-      # else
-      #   # "#FF4A53"
-      #   "rgba(255,255,1,1)"
-      end
+    if slots == 0
+      "yellow"
+    elsif bikes == 0
+      "white"
+    else
+      "red"
+    end
+    # case bikes
+    #   when 0
+    #     "white"
+    #   else
+    #     "red"
+    #     # "rgba(255,255,1,1)"
+    #   # when 1..34
+    #   #   # "#07BADB"
+    #   #   "rgba(255,255,1,0.3)"
+    #   # when 35..37
+    #   #   # "#78E268"
+    #   #   "rgba(255,255,1,0.5)"
+    #   # when 51..99
+    #   #   # "#FEFF57"
+    #   #   "rgba(255,255,1,0.7)"
+    #   # else
+    #   #   # "#FF4A53"
+    #   #   "rgba(255,255,1,1)"
+    #   end
   end
 
   def total_slots

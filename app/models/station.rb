@@ -46,9 +46,10 @@ class Station < ActiveRecord::Base
   def colour
     case percentage_of_bikes_available
       when 0
-        "red"
+        "white"
       else
-        "rgba(255,255,1,1)"
+        "red"
+        # "rgba(255,255,1,1)"
       # when 1..34
       #   # "#07BADB"
       #   "rgba(255,255,1,0.3)"

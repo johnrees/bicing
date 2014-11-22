@@ -12,6 +12,8 @@ namespace :import do
       slots = node.locate('slots').first.text.to_i
       bikes = node.locate('bikes').first.text.to_i
 
+      p slots+bikes
+
       s = Station.unscoped.find_or_create_by(id: id) do |station|
         station.street = node.locate('street').first.nodes.first.value
         station.kind = node.locate('type').first.text
@@ -23,7 +25,7 @@ namespace :import do
         station.status = node.locate('status').first.text
         station.slot_count = slots
         station.bike_count = bikes
-
+        puts 'a'
         if (slots + bikes) > 0
           station.percentage_of_bikes_available = ((bikes/(slots + bikes).to_f) * 100).ceil
         end

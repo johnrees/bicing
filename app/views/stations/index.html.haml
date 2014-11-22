@@ -2,6 +2,9 @@
   - @stations.each do |station|
     %li
       = station
-      = station.bikes
+      \/
+      = station.bike_count
+      \/
+      = station.slot_count
+      \/
       #{station.percentage_of_bikes_available}%
-      = station.latest_reading

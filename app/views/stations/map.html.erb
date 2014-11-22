@@ -50,10 +50,10 @@ function initialize() {
   var populationOptions = {
     strokeWeight: 0,
     fillColor: '<%= station.colour %>',
-    fillOpacity: 0.9,
+    fillOpacity: 1,
     map: map,
     center: new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-    radius: <%= station.total_slots * 2 %>
+    radius: <%= station.bike_count == 0 ? 20 : (station.percentage_of_bikes_available || 0) %>
   };
   new google.maps.Circle(populationOptions)
 <% end %>

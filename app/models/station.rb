@@ -47,18 +47,20 @@ class Station < ActiveRecord::Base
     case percentage_of_bikes_available
       when 0
         "red"
-      when 1..34
-        # "#07BADB"
-        "rgba(255,255,1,0.3)"
-      when 35..37
-        # "#78E268"
-        "rgba(255,255,1,0.5)"
-      when 51..99
-        # "#FEFF57"
-        "rgba(255,255,1,0.7)"
       else
-        # "#FF4A53"
         "rgba(255,255,1,1)"
+      # when 1..34
+      #   # "#07BADB"
+      #   "rgba(255,255,1,0.3)"
+      # when 35..37
+      #   # "#78E268"
+      #   "rgba(255,255,1,0.5)"
+      # when 51..99
+      #   # "#FEFF57"
+      #   "rgba(255,255,1,0.7)"
+      # else
+      #   # "#FF4A53"
+      #   "rgba(255,255,1,1)"
       end
   end
 

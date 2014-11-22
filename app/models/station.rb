@@ -45,7 +45,7 @@ class Station < ActiveRecord::Base
 
   def colour
     if slots == 0
-      "yellow"
+      "orange"
     elsif bikes == 0
       "white"
     else

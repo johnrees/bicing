@@ -55,7 +55,7 @@ function initialize() {
     fillOpacity: 1,
     map: map,
     center: new google.maps.LatLng(<%= station.lat %>, <%= station.lng %>),
-    radius: <%= station.bike_count == 0 ? 30 : [200, (station.bike_count || 0) * 4].min %>,
+    radius: <%= station.bike_count == 0 ? 20 : [20,[200, (station.bike_count || 0) * 4].min].max %>,
     zIndex: <%= station.bike_count == 0 ? 9999 : 1 %>
   };
   new google.maps.Circle(populationOptions)

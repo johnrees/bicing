@@ -1,5 +1,5 @@
-<%= cache Reading.unscoped.last do %>
-<!-- LAST UPDATED AT: <%= (Reading.unscoped.last.created_at + 1.hour).stamp('14:11:33 12 Apr 99') %> -->
+<%#= cache @reading do %>
+<!-- LAST UPDATED AT: <%= (@reading.created_at + 1.hour).stamp('14:11:33 12 Apr 99') %> -->
 
 <!DOCTYPE html>
 <html>
@@ -43,11 +43,6 @@ function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // var pointArray = new google.maps.MVCArray(empty_stations);
-  // heatmap = new google.maps.visualization.HeatmapLayer({data: pointArray});
-  // heatmap.setMap(map);
-
-
   <% @stations.each do |station| %>
   // <%= station.id %> <%= station %> - <%= station.latest_reading %> - <%= station.bike_count %>
   var populationOptions = {
@@ -61,9 +56,7 @@ function initialize() {
   };
   new google.maps.Circle(populationOptions)
 <% end %>
-
 }
-
 
 
 
@@ -87,7 +80,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
   <body>
     <div id="map-canvas"></div>
-    <div id="time"><%= (Reading.unscoped.last.created_at + 1.hour).stamp('SUN 14:11') %></div>
+    <div id="time"><%= (@reading.created_at + 1.hour).stamp('SUN 14:11') %>
+    <input id="test" type="range" min="<%= 2.days.ago.to_i %>" max="<%= 2.hours.ago.to_i %>" step="900" />
+    </div>
   </body>
 </html>
-<% end %>
+<%# end %>

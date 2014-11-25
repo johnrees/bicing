@@ -44,7 +44,6 @@ function initialize() {
       mapOptions);
 
   <% @stations.each do |station| %>
-  // <%= station.id %> <%= station %> - <%= station.latest_reading %> - <%= station.bike_count %>
   var populationOptions = {
     strokeWeight: 0,
     fillColor: '<%= station.colour %>',
@@ -55,7 +54,7 @@ function initialize() {
     zIndex: <%= station.bikes == 0 ? 9999 : 1 %>
   };
   new google.maps.Circle(populationOptions)
-<% end %>
+  <% end %>
 }
 
 

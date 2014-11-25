@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Bicing
   class Application < Rails::Application
 
+    config.middleware.use Rack::Deflater
+
     config.generators do |g|
       g.assets false
       g.helper  false

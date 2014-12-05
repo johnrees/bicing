@@ -1,4 +1,4 @@
-ruby '2.0.0'
+# ruby '2.0.0'
 source 'https://rubygems.org'
 
 
@@ -18,7 +18,7 @@ gem 'htmlentities'
 gem 'stamp'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'mina'
 # Use jQuery as the JavaScript library
 gem 'jquery-rails', '~> 4.0.0.beta2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
